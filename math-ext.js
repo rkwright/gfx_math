@@ -8,6 +8,9 @@
  * Copyright 2018, All rights reserved.
  */
 
+//--- constants ---
+REVISION = '0.1.0';
+
 Math.QUARTER_PI = Math.PI / 4;
 Math.HALF_PI    = Math.PI / 2;
 Math.TWO_PI     = Math.PI*2;
