@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 1986-2023 Richard K. Wright. All rights reserved.
+ *  * Copyright (c) 1986-2023 Richard K. Wright. All rights reserved.
  *
  * This work is licensed under the terms of the MIT license.
  * For a copy, see <https://opensource.org/licenses/MIT>.
@@ -80,10 +80,39 @@ class Matrix  {
     /**
      * Rotate the current matrix by the specified angle, which is in DEGREES.
      *
-     * @param rot
+     * @param angle
      */
-    rotate ( rot ) {
+    rotate ( angle ) {
+        var 	radians;
+        var 	tmp = new Matrix();
 
+        if (angle === 0.0)
+            return;
+
+        radians = angle * RADCONV;
+
+        tmp.a = cos(radians);
+        tmp.b = sin(radians);
+        tmp.c = -tmp.b;
+        tmp.d = tmp.a;
+        tmp.x = 0.0;
+        tmp.y = 0.0;
+
+        matmult( tmp, this );
+    }
+
+    /**
+     *   Transform the point (x, y) by the current matrix.
+     *   Returns the value as an on-the-fly tuple.
+     *
+     * @param x
+     * @param y
+     */
+    transform ( x, y ) {
+        var rx = this.a * x + this.c * y + this.x;
+        var ry = this.b * x + this.d * y + this.y;
+
+        return { x : rx, y : ry };
     }
 }
 
