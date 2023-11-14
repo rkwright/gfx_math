@@ -4,7 +4,7 @@
  * This work is licensed under the terms of the MIT license.
  * For a copy, see <https://opensource.org/licenses/MIT>.
  *
- * matrix.jx
+ * matrix.js
  *
  * A very simple implementation of a 2D 3x3 homegenous matrix library.
  * Very PostScript-like (for obvious reasons)
@@ -22,7 +22,7 @@ class Matrix  {
 
     //--- class methods ---
     constructor () {
-        identmat();
+        this.identity();
     }
 
     /**
@@ -60,8 +60,8 @@ class Matrix  {
      * @param ty
      */
     translate ( tx, ty ) {
-        this.x += tx * a + ty * c;
-        this.y += tx * b + ty * d;
+        this.x += tx * this.a + ty * this.c;
+        this.y += tx * this.b + ty * this.d;
     }
 
     /**
@@ -83,22 +83,22 @@ class Matrix  {
      * @param angle
      */
     rotate ( angle ) {
-        var 	radians;
-        var 	tmp = new Matrix();
+        let 	radians;
+        let 	tmp = new Matrix();
 
         if (angle === 0.0)
             return;
 
-        radians = angle * RADCONV;
+        radians = angle * Math.RAD2DEG;
 
-        tmp.a = cos(radians);
-        tmp.b = sin(radians);
+        tmp.a = Math.cos(radians);
+        tmp.b = Math.sin(radians);
         tmp.c = -tmp.b;
         tmp.d = tmp.a;
         tmp.x = 0.0;
         tmp.y = 0.0;
 
-        matmult( tmp, this );
+        this.matmult( tmp, this );
     }
 
     /**
@@ -109,10 +109,10 @@ class Matrix  {
      * @param y
      */
     transform ( x, y ) {
-        var rx = this.a * x + this.c * y + this.x;
-        var ry = this.b * x + this.d * y + this.y;
+        let rx = this.a * x + this.c * y + this.x;
+        let ry = this.b * x + this.d * y + this.y;
 
-        return { x : rx, y : ry };
+        return ( { x : rx, y : ry } );
     }
 }
 
