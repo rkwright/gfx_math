@@ -6,14 +6,14 @@
  *
  * matrix.js
  *
- * A very simple implementation of a 2D 3x3 homegenous matrix library.
+ * A very simple implementation of a 2D 3x3 homoegenous matrix library.
  * Very PostScript-like (for obvious reasons)
  */
 
 'use strict';
 
 /**
- * Constants
+ *
  */
 class Matrix  {
 
