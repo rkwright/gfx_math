@@ -6,8 +6,9 @@
  *
  * matrix.js
  *
- * A very simple implementation of a 2D 3x3 homoegenous matrix library.
- * Very PostScript-like (for obvious reasons)
+ * A very simple implementation of a 3x2 homogeneous matrix library. This
+ * is based on the PostScript CTM-style matrix, i.e.  [a b c d x y]
+ *
  */
 
 'use strict';
@@ -112,7 +113,7 @@ class Matrix  {
         let rx = this.a * x + this.c * y + this.x;
         let ry = this.b * x + this.d * y + this.y;
 
-        return ( { x : rx, y : ry } );
+        return  { x : rx, y : ry };
     }
 }
 
