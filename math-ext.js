@@ -10,12 +10,13 @@
  */
 
 //--- constants ---
-REVISION = '0.1.0';
+const REVISION = '0.1.0';
 
 Math.QUARTER_PI = Math.PI / 4;
 Math.HALF_PI    = Math.PI / 2;
 Math.TWO_PI     = Math.PI * 2;
 Math.RAD2DEG    = 180 / Math.PI;
+//Math.EPSILON    = 0.00001;
 
 Math.sqr    = function (arg) { return arg*arg; };
 Math.fmod   = function (a,b) { return Number((a - (Math.floor(a / b) * b)).toPrecision(8)); };
@@ -33,5 +34,13 @@ Math.wrapAng = function( arg, loLim, upLim, incr ) {
         arg += incr;
 
     return arg;
+}
+
+Math.fpSign = function(arg) {
+    return (arg < 0.0) ? -1.0 : 1.0;
+}
+
+Math.fpNear = function(a, b) {
+    return (Math.abs(a - b) < 0.1);
 }
 
